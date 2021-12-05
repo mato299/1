@@ -15,7 +15,7 @@ if(isset($_POST['zlava']))
 if(isset($_POST['suma_darc_poukazu']))
     $suma = $_POST['suma_darc_poukazu'];
 
-$vysledok = $pocetHracov*19;
+$vysledok = $pocetHracov * 19;
 
 // odpocitame isic zlavu
 if($isic == 'ISIC')
@@ -24,7 +24,16 @@ if($isic == 'ISIC')
 $vysledok -= 4;
 
 // odpocitame 10% zlavu
-$vysledok *= 0.1;
+if ($zlava == 10){
+    $vysledok *= 0.9;
+}
+
+if ($zlava == 20){
+    $vysledok *= 0.8;
+}
+
+$vysledok -= $suma;
+
 
 echo($vysledok);
 
