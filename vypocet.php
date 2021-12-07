@@ -55,7 +55,7 @@ if(is_numeric($vysledok))
 }
 else
 {
-    echo "Error: $vysledok<br>";
+    echo "Error: $vysledok<br>"; //
 }
 
 echo "Pocet hracov je $pocetHracov, plus $dieta_do6r deti.<br>"; // nevypise 0
@@ -96,7 +96,16 @@ function zvolenieZlavy($pocetHracov, $zlava, $isic)
 
     // dame najvyhodnejsiu zlavu
     //porovname najvyhodnejsie
-}
+    
+  
+        
+      
+    
+    
+    }
+
+
+
 
 function vypocetZlavy($vysledok, $typ_zlavy)
 {
@@ -177,6 +186,14 @@ function vypocetPlatby($pocetHracov, $dieta_do6r, $isic, $zlava, $suma)
     {
         $vysledok -= 4;
     }
+    
+        if ($pocetHracov == 1){
+           return "$vysledok<br>" . "najlepsie je vyuzit isic zlavu";
+        } else{
+            echo "najlepsie je vyuzit 20 % zlavu . <br>";
+
+        }  
+     
    
     
     if($suma > $vysledok){
