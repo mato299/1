@@ -61,7 +61,7 @@ else
 echo "Pocet hracov je $pocetHracov, plus $dieta_do6r deti.<br>"; // nevypise 0
 
 
-$typ_zlavy = zvolenieZlavy($zlava, $isic);
+$typ_zlavy = zvolenieZlavy($pocetHracov, $zlava, $isic);
 
 // ked je isic, nie je zlava
 if($typ_zlavy == ISIC)
@@ -80,7 +80,7 @@ if($suma){
     echo "zakaznik vyuzil darcekovu poukazku v hodnote $suma eur";
 }
 
-function zvolenieZlavy($vysledok, $zlava, $isic)
+function zvolenieZlavy($pocetHracov, $zlava, $isic)
 {
     // ked je isic, nie je zlava
     /*if($isic)
@@ -95,7 +95,7 @@ function zvolenieZlavy($vysledok, $zlava, $isic)
     } */   
 
     // dame najvyhodnejsiu zlavu
-    porovname najvyhodnejsie
+    //porovname najvyhodnejsie
 }
 
 function vypocetZlavy($vysledok, $typ_zlavy)
