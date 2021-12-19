@@ -21,7 +21,7 @@ class Util
         }
     }
 
-    public static function ehcoNadpis() {
+    public static function echoNadpis() {
         echo "Nadpis";
     }
    
