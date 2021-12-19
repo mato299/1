@@ -25,8 +25,15 @@
     Util::echoNewBr(2);
 
 
+<<<<<<< Updated upstream
     echo("Name:".CurrentUser::getName("John", "red")."<br>"); 
     
+=======
+    echo(CurrentUser::getName()."<br>");
+    echo(CurrentUser::getPassword()."<br>");
+    echo(CurrentUser::getGender());
+  
+>>>>>>> Stashed changes
 
 
 
