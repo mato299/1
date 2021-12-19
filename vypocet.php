@@ -7,7 +7,8 @@
     const ISIC = 3;
 
 
-    echoNadpis();
+    Util::echoNadpis("<h1>najlepisa stranka</h1>");
+    Util::echoNadpis2("<h2>najlepisa stranka 2</h2>");
 
 
 
