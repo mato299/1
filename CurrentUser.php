@@ -25,17 +25,46 @@ class CurrentUser
     {
         return CurrentUser::$passHash;
     }
-
-    public static function hashPassword($password)
+    public static function getPasswordHash()
     {
-        CurrentUser::$passHash = hash('sha256', $password);
+        return CurrentUser::$passHash;
     }
 
+    // uklada
+    public static function setPassword($newPassword) // 0000
+    {
+        // heslo najprv musime zasifrovat
+        CurrentUser::hashPassword($password);
+
+        // az teraz sifru mozeme ulozit
+        CurrentUser::$password = $newPassword;
+    }
+
+    // sifruje
+    public static function hashPassword($password)
+    {
+        return hash('sha256', $password);
+    }
+   
+ public static function hashPassword($password)
+    {
+        return hash('sha256', $password);
+    }
 
     public static function getGender()
     {
         return CurrentUser::$gender;
     }
+    
+    public static function setGender($newGender)
+    {
+        CurrentUser::$gender = $newGender;
+    }
+    public static function setPassword($newPassword)
+    {
+        CurrentUser::$password = $newPassword;
+    }
 }
+
 
 ?>

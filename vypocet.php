@@ -8,7 +8,7 @@
     const ISIC = 3;
 
 
-    Util::echoNadpis("najlepisa stranka", "red", "h2", 40);
+    Util::echoNadpis(CurrentUser::getName(), "red", "h2", 40);
 
     Util::echoNadpis("najlepisa str", "blue", "h1", 20);
 
@@ -23,6 +23,10 @@
     echo("Pass: ".CurrentUser::getPasswordHash()."<br>");
     echo("Gender: ".CurrentUser::getGender()."<br>");
     Util::echoNewBr(2);
+
+
+    echo("Name:".CurrentUser::getName("John", "red")."<br>"); 
+    
 
 
 
