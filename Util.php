@@ -21,9 +21,8 @@ class Util
         }
     }
 
-    public static function echoNadpis($textNazobrazenie, $color) {
-        echo ("<h1> style=\"color:" . $color . ";\"> H1 . $textNazobrazenie ."</h1>");
-    }
+    public static function echoNadpis($textNazobrazenie, $color, $Hkolko) {
+        echo ('<'.$Hkolko.' style="color:'.$color.'; font-size: 16px;"> '.$Hkolko . ''. $textNazobrazenie.'</'.$Hkolko.'>');
 
 
 }
