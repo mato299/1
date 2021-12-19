@@ -7,12 +7,12 @@
     const ISIC = 3;
 
 
-    Util::echoNadpis("najlepisa stranka", "red", "h2");
+    Util::echoNadpis("najlepisa stranka", "red", "h2", 40);
 
-    Util::echoNadpis("najlepisa str", "blue", "h1");
+    Util::echoNadpis("najlepisa str", "blue", "h1", 20);
 
 
-    Util::echoNadpis("najlepisa str", "blue", "h3");
+    Util::echoNadpis("najlepisa str", "blue", "h3", 10);
 
 
 
