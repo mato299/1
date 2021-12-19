@@ -1,0 +1,187 @@
+﻿comment // PHP alebo /* PHP comment */ a v HTML <!-- comment -->
+nazov premennej, funkcie, const a cohokovlek -  iba az_AZ (pomlcku - nepouzivat je to minus) ... $premennaCamelCase $premenna_s_podtrznikom CONSTANTA_BEZ_DOLARA funkciaJeLowerCamelCaseVacsinou()
+lowerCamelCase - UpperCamelCase - all_lower_case_with_underscore
+
+variables - premenne, ( $a = $a + 1; $a++; $a += 1; a+b, a-b, a*b, a/b, a%b stringA.stringB stringA .= stringB
+const - konstanty - CONSTANTA_BEZ_DOLARA
+data types (skalárne dátové typy) - bool = true/false, int = 1, float = 1.52, string = 'priblizne jeden a pol', 
+Compound data types - array, object  pozri obrazok https://www.phptutorial.net/php-tutorial/php-data-types/
+special data types - null = null, resource - referencia na subor alebo databazu
+
+pretypovanie (int)$premenna; (anglicky "casting")
+if elseif else == != && || < > <= >=  (ktore ma prioritu ozatvorkujeme)
+Ternary operator - ternárny operátor  ($input > null ? 'not empty' : 'empty';)
+
+PSR-1 PSR-4 https://www.php-fig.org/psr/psr-1/
+Class names MUST be declared in StudlyCaps.
+Class constants MUST be declared in all upper case with underscore separators.
+Method names MUST be declared in camelCase.
+
+
+
+-----
+7.12.
+equal == porovna hodnotu
+identical === porovna hodnotu aj rovnaký typ
+(int)stringu - pretypovanie stringu na int
+enum - enumerátor, v PHP pomocou const, si to vyrobime manualne.
+existuje uz aj enum od verzie PHP 8.1 (release November 25, 2021)
+const - KONSTANTA_VELKYM_PISMOM (bez $dolára pred názvom)
+https://en.wikipedia.org/wiki/Enumerated_type#PHP
+https://cs.wikipedia.org/wiki/V%C3%BD%C4%8Dtov%C3%BD_typ#V%C3%BD%C4%8Dtov%C3%BD_typ_v_jazyce_Javascript
+switch - nezabudnúť default na konci
+bussines logic - oddelili sme "pravidla realneho sveta" od ostatnych častí kódu.
+nepovinny - default parameter funkcie - function($povinny, $nepovinny = 'nieco');
+... nekonecny parameter function($povinny, $nepovinny = 'nieco');
+-----
+8.12.
+$str[0];
+$str[$i];
+$vysledok = str_replace($toto_zmen, $za_toto, $v_tomto_texte); // vrati iny string ($novy, a mame aj $stary nezmeneny);
+$word = str_replace($toto_zmen, $za_toto, $word); // prepise rovnaky string (zmeni ho);
+while
+
+-----
+9.12.
+ak sa opakuje 2x rovnaky kod, dat ho do funkcie
+ak sa if a if prilis vnoruje dat to do funkcie
+vnutro for a while pravdepodobne dat do funkcie
+
+na riadku 152 $min = 5000; pouzijeme ejdno z tohto.
+INF; -INF; PHP_INT_MAX; PHP_INT_MIN; PHP_INT_SIZE; 
+
+null - NULL, false - FALSE - False- faLSE
+
+urobit global variable cena = 19e
+
+Uloha:
+opravit
+Warning: A non-numeric value encountered in C:\xampp\htdocs\gitweb\vypocet.php on line 145
+
+-----
+
+
+Later
+https://hackr.io/blog/top-php-alternatives
+HTML, XHTML, XML, DOM
+HTML5 - save, canvas, 
+CSS, CSS3 - SCSS, SASS, LESS(dead)
+JavaScript, jQuery, AJAX
+JSON a XML(druhy krat)
+MySQL, MariaDM fork of MySQL, MongoDB - NoSQL, PostgreSQL, 
+
+RestAPI
+
+
+PHP, PHP 7
+PHP 8, PHP 8.1
+Composer - autoload, PSR-4 https://jakpsatphp.cz/PSR4/
+APC - https://en.wikipedia.org/wiki/List_of_PHP_accelerators
+Libraries - https://en.wikipedia.org/wiki/List_of_PHP_extensions
+- verzie PHP r.1995, PHP 4 - r2000, PHP 5 - r2004, PHP 6 (nevydaná), PHP 7 - r2015, PHP8 - r2020
+ https://cs.wikipedia.org/wiki/PHP
+- ako zmenit verziu php.
+
+- https://www.w3schools.com/php/php_datatypes.asp
+- superglobals - $GLOBALS vs. global, $_SERVER, ($_REQUEST nepouzivat = $_POST + $_GET + $_COOKIE???php.ini) $_FILES, $_ENV, $_SESSION - framework https://www.w3schools.com/php/php_superglobals_get.asp
+- array
+- loops - for, while, break, continue,
+- rekurzivne funkcie
+- class, this, void, static,
+- namespace, scopes (zopakovat superglobal, global, local, ...)
+- dedenie
+- compile (php sa nekompiluje), Interpreted language, parser (napr. xml parser)
+- cookies, sessions, nonce, hash(md5, sha256)
+- URL - jej formát, http_build_query(), 
+
+- funkcie z dokumentacie
++ echo($x); var_dump($x); <pre>print_r($array);</pre> ob_start(); ob_get_clean(); <?php echo $a; ?> <?= $a; ?> <?= $a ?>   ---nepouzivat short tag(<? ?>) PSR-1 not comply---
++ include(); require( E_COMPILE_ERROR ); require_once();
++ die(); exit(); 
++ header(); headers_list(); headers_sent(); setcookie(); este pred <html> napr. header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"); - riesi framework  BROWSER-F12-SIET-HLAVICKY
+
++ gettype(); define(); empty(); isset(); 
++ is_scalar() = bool, int, string, jednohodnotove  -  is_iterable() = array, pocitatelne objekty;
++ is_bool();
++ is_int(); ceil(); floor(), round(); rand(); number_format(); abs(); pow();
++ is_float();
++ is_string(), is_numeric(); strlen(), trim(); substr(); explode(); strtok(); strpos();
++ is_array(); count() == sizeof(); array_slice(); implode(); array_push(); array_key_last(); in_array(); key_exist();
+length neexistuje v PHP ale je v JS
+
++ func_num_args(); func_get_args(); function_exists(); get_defined_functions();
++ is_object(); get_debug_type() - PHP 8.0 aj nazov objektu;
++ preg_match(); json_encode(); serialize(); 
++ iba html - esc_html(); esc_attr(); esc_url(); esc_textarea(); https://wordpress.stackexchange.com/questions/321307/what-s-the-difference-between-esc-html-esc-attr-esc-html-e-and-so-on
+viac is_niečo: https://www.php.net/manual/en/ref.var.php 
+
+
+
+
+
+
+SUMMARY:
+
+FRAMEWORK (obtiazne lebo sa treba zoznámit s MVC design pattern) https://en.wikipedia.org/wiki/Web_framework
+PHP:
+    - Laravel most popular PHP framework, 
+    - Symfony popular PHP framework, 
+    - Nette
+JS:
+    backend - server side: 
+    - Node.js (pomalší ako PHP ekosystem, JS ale server-side)
+    front-end - GUI: 
+    - React,
+    - Angular, 
+    - jQuery kniznica
+    - Bootstrap (CSS framework)
+    - Foundation (CSS framework)
+
+Asp.net
+Python: 
+    - Django (fullstack)
+Java:
+    - Spring Boot (backend)
+C (čisté C, C++, http server)
+
+CMS:
+- Wordpress,, Drupal, Moodle, Joomla, MediaWiki, 
+ 
+MySQL
+- PHPMyAdmin
+- create table
+- get
+- insert
+- get last inserted id
+- update
+- alter
+- join
+
+Javascript
+- diasble zlavu ak je isic zaskrtnuty
+
+Ostatne
+- Documentation,
+- Debug, Profile, Debugger, Profiler, Breakpoint, Step in-out-over, Xdebug(PHP)
+- Refactoring
+- Design pattern - návrhové vzory - https://en.wikipedia.org/wiki/Software_design_pattern
+- Unit Testy - automatizované testy - PHPUnit https://en.wikipedia.org/wiki/PHPUnit
+- syntaktický analyzátor (parser)
+- Syntax vs Sémantika
+- Encoding - PSR-1 PHP code MUST use only UTF-8 without BOM. Unicode (kódovanie zdrojového kódu, stránky), Unix(LF) vs DOS(CR+LF) vs MAC(CR).
+- XSS - cross-site scripting
+- SQL injection
+- http vs https
+- Libraries kniznice
+- cache - 
+  <?PHP // no caching
+  header( 'Expires: Sat, 26 Jul 1997 05:00:00 GMT' );
+  header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+  header( 'Cache-Control: no-store, no-cache, must-revalidate' );
+  header( 'Cache-Control: post-check=0, pre-check=0', false );
+  header( 'Pragma: no-cache' );
+  ?>
+- Front-end, Back-end, DevOps
+- server - Apache, XAMP, WAMP LAMP MAMP, DevOps, Virtual Server, atd.
+- domain - domena - dns records: A MX CNAME NS PTR TXT AAAA dns_get_record();
+- mailserver, Mercury v xammp 

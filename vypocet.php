@@ -1,16 +1,75 @@
-<?php 
+<?php
+    require_once('Util.php'); // include
     
+    const BEZ_ZLAVY = 0;
     const PERC_20 = 1;
     const PERC_10 = 2;
     const ISIC = 3;
 
+
+
+    //  az od PHP 8.1
+    // enum Zlavy 
+    // {
+    //     case BezZlavy;
+    //     case Perc20;
+    //     case Perc10;
+    //     case Isic;
+    // }
  
+
+
+function echoOldBr1(){}
+function echoOldBr2(){}
+function echoOldBr3(){}
+Util::echoOldBr1(); // 1x <br>
+Util::echoOldBr2(); // 2x <br>
+Util::echoOldBr3(); // 3x <br>
+
+
+function echoOldBr($how_many){} // povinna premenna
+Util::echoOldBr();  // error
+Util::echoOldBr(1); // 1x <br>
+Util::echoOldBr(2); // 2x <br>
+Util::echoOldBr(3); // 3x <br>
+
+
+function echoNewBr($how_many = 8){} // volitelna premenna
+Util::echoNewBr();  // 8x <br>
+Util::echoNewBr(1); // 1x <br>
+Util::echoNewBr(2); // 2x <br>
+Util::echoNewBr(3); // 3x <br>
+
+
+// ked budes definovat novu funkciu je jedno ktory sposob si vyberies.
+// 
+
+
+//Util::echoBr(); // <br>  zavolaj static echoBr(1);
+// Util::echoBr(2); // <br><br>
+// Util::echoBr(3); // <br><br><br>
+
+
+
+ $edump = get_defined_functions();
+ echo("<pre>");
+ print_r($edump);
+ echo("</pre>");
+
+
+
+
+
+
+
+
 // 19€ na hraca
 $pocetHracov = 0;
 if(isset($_POST['pocet_hracov']))
 {
     $pocetHracov = $_POST['pocet_hracov'];
 }
+
 
 $dieta_do6r = 0;
 if(isset($_POST['dieta_do6r']) 
@@ -35,7 +94,6 @@ $zlava = 0;
 if(isset($_POST['zlava']))
 {
     $zlava = $_POST['zlava']; 
-    //echo ("Zlava je:".$zlava);
 }
 
 // - xy €
@@ -46,41 +104,60 @@ if(isset($_POST['suma_darc_poukazu']))
 }
 
 $vysledok = vypocetPlatby($pocetHracov, $dieta_do6r, $isic, $zlava, $suma);
-//echo("mimo funkcie".$pocetHracov."<br>");
 
 
+// Ak je vysledok cislo, vypiseme ho ze kolko eur maju platit
 if(is_numeric($vysledok))
 {
     echo "Platba je $vysledok eur<br>";
 }
+// Ak nebol vysledok cislo, tak to bude nejaka Chybová hláška. Zobrazíme error
 else
 {
     echo "Error: $vysledok<br>"; //
 }
 
-echo "Pocet hracov je $pocetHracov, plus $dieta_do6r deti.<br>"; // nevypise 0
+echo "Pocet hracov je $pocetHracov, plus $dieta_do6r deti.<br>";
 
-
-$typ_zlavy = zvolenieZlavy($pocetHracov, $zlava, $isic);
+echo('<h1>Použitá zľava</h1>');
+echo('<strong>Najlepsie je vyuzit: ');
 
 // ked je isic, nie je zlava
+$typ_zlavy = zvolenieZlavy($pocetHracov, $zlava, $isic, $vyska_zlavy);
+
+echo('<strong>Zlava je '. $vyska_zlavy.'<br>');
 if($typ_zlavy == ISIC)
 {
-    echo "zakaznik vyuzil isic zlavu 4 eur <br>"; 
+    //echo $vysledok."<br>" . "najlepsie je vyuzit isic zlavu";
+    echo "isic zlavu 4 eur"; 
 } 
 if($typ_zlavy == PERC_10){
-    echo "zakaznik vyuzil 10 % zlavu<br>"; 
+    echo "10 % zlavu"; 
 }
 if($typ_zlavy == PERC_20){     
-    echo "zakaznik vyuzil 20 % zlavu<br>"; 
+    echo "20 % zlavu"; 
 }
+echo("</strong><br>");
+
+
+zvolenieZlavy($pocetHracov, false, false, $ziadna_zlava /* vytvorit ti to vo funckii, prepise sa*/);
+zvolenieZlavy($pocetHracov, false, true, $isic_zlava /* vytvorit ti to vo funckii, prepise sa*/);
+zvolenieZlavy($pocetHracov, 20, false, $perc20_zlava /* vytvorit ti to vo funckii, prepise sa*/);
+zvolenieZlavy($pocetHracov, 10, false, $perc10_zlava /* vytvorit ti to vo funckii, prepise sa*/);
+echo('<h2></h2><table>');
+echo("<tr><td>BEZ ZLAVY</td><td>$ziadna_zlava</td></tr>");
+echo("<tr><td>ISIC</td><td>$isic_zlava</td></tr>");
+echo("<tr><td>20%</td><td>$perc20_zlava</td></tr>");
+echo("<tr><td>10%</td><td>$perc10_zlava</td></tr>");
+echo('</table>');
 
 
 if($suma){
     echo "zakaznik vyuzil darcekovu poukazku v hodnote $suma eur";
 }
 
-function zvolenieZlavy($pocetHracov, $zlava, $isic)
+// Bussiness logic
+function zvolenieZlavy($pocetHracov, $zlava, $isic, &$vyska_zlavy, $pocet_deti = 0 /*Nepovinny parameter musi byt vzdy na konci*/)
 {
     // ked je isic, nie je zlava
     /*if($isic)
@@ -94,15 +171,58 @@ function zvolenieZlavy($pocetHracov, $zlava, $isic)
          return PERC_20;
     } */   
 
-    // dame najvyhodnejsiu zlavu
-    //porovname najvyhodnejsie
-    
-  
-        
-      
-    
-    
+    $typ_zlavy = BEZ_ZLAVY;
+    $platba_plna_suma = $pocetHracov * 19;
+
+    $platba_s_isic = $platba_plna_suma - 4;
+    $platba_s_20 = $platba_plna_suma * 0.8;
+    $platba_s_10 = $platba_plna_suma * 0.9;
+
+    // Zistime ktore je MIN
+    $min = 5000;
+    if($isic)
+    {
+        if($platba_s_isic < $min) // 15
+        {
+            $min = $platba_s_isic;
+            $typ_zlavy = ISIC;
+        }
     }
+    if($zlava)
+    {
+        if($zlava == 20)
+        {
+            if($platba_s_20 < $min) // 16
+            {
+                $min = $platba_s_20;
+                $typ_zlavy = PERC_20;
+            }
+        }
+        if($zlava == 10)
+        {
+            if($platba_s_10 < $min) // 17
+            {
+                $min = $platba_s_10;
+                $typ_zlavy = PERC_10;
+            }
+        }
+    }
+    $platba_po_zlave = $min;
+    // END OF MIN SECTION
+
+   
+    if($typ_zlavy == BEZ_ZLAVY)
+    {
+        $vyska_zlavy = 0;
+    }
+    else
+    {
+        $vyska_zlavy = $platba_plna_suma - $platba_po_zlave;
+    }
+
+    // vypiseme MAX
+    return $typ_zlavy;
+}
 
 
 
@@ -164,40 +284,13 @@ function vypocetPlatby($pocetHracov, $dieta_do6r, $isic, $zlava, $suma)
 
     $vysledok += $pocetHracov * 19;
 
-    $typ_zlavy = zvolenieZlavy($vysledok, $zlava, $isic);
+    $vyska_zlavy = 0;
+    $typ_zlavy = zvolenieZlavy($pocetHracov, $zlava, $isic, $vyska_zlavy);
     $vysledok = vypocetZlavy($vysledok, $typ_zlavy);
 
-    // ked je isic, nie je zlava
-    if(!$isic){
-        // odpocitame 10% zlavu
-        if ($zlava == 10)
-        {
-            $vysledok *= 0.9;
-        }
-
-        if ($zlava == 20)
-        {
-            $vysledok *= 0.8;
-        }
-    }
-
-    // odpocitame isic zlavu
-    if($isic)
-    {
-        $vysledok -= 4;
-    }
-    
-        if ($pocetHracov == 1){
-           return "$vysledok<br>" . "najlepsie je vyuzit isic zlavu";
-        } else{
-            echo "najlepsie je vyuzit 20 % zlavu . <br>";
-
-        }  
-     
-   
     
     if($suma > $vysledok){
-        return "darcekovy poukaz nesmie byt vacsi ako celkova cena";
+        return "darcekovy poukaz nesmie byt vacsi ako celkova cena"; // ERROR
     }
     
    
@@ -205,7 +298,7 @@ function vypocetPlatby($pocetHracov, $dieta_do6r, $isic, $zlava, $suma)
     // odpocitame sumu poukaz
     $vysledok -= $suma;
 
-    return $vysledok;
+    return $vysledok; // cislo
 }
 
 ?>
