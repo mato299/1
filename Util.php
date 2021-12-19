@@ -15,9 +15,10 @@ class Util
     public static function echoNewBr($how_many = 1) // nepovinna premenna
     {
         for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
+            // echo('<br>-'.$how_many.'x ');
+            // echo('NOVY RIADOK');
+            // echo('-<br>');
+            echo('<br>');
         }
     }
 

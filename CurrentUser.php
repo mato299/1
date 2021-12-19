@@ -3,7 +3,8 @@
 class CurrentUser
 {
     private static $name = "John";
-    private static $pass = "0000";
+    //private static $passDebug = "0000"; // len pre nas na zobrazenie
+    private static $passHash;
     private static $gender = "male";
 
     public static function setName($newName)
@@ -16,15 +17,20 @@ class CurrentUser
         return CurrentUser::$name;
     }
 
-    public static function getPassword()
+    public static function getPasswordDebug()
     {
-        return CurrentUser::$pass;
     }
 
-    private static function getPasswordHash()
+    public static function getPasswordHash()
     {
-        
+        return CurrentUser::$passHash;
     }
+
+    public static function hashPassword($password)
+    {
+        CurrentUser::$passHash = hash('sha256', $password);
+    }
+
 
     public static function getGender()
     {

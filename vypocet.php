@@ -15,21 +15,14 @@
 
     Util::echoNadpis("najlepisa str", "blue", "h3", 10);
 
+    // nastavime mu heslo na 0000 ale ulozime zasifrovane
+    CurrentUser::hashPassword("0000");
 
     echo("User:<br>");
-    echo("Name:".CurrentUser::getName()."<br>");
-
-    CurrentUser::setName("Peter");
-    echo("Name:".CurrentUser::getName()."<br>");
-
-    
+    echo("Name: ".CurrentUser::getName()."<br>");
+    echo("Pass: ".CurrentUser::getPasswordHash()."<br>");
+    echo("Gender: ".CurrentUser::getGender()."<br>");
     Util::echoNewBr(2);
-
-
-    echo(CurrentUser:: getName()."<br>");
-    echo(CurrentUser::getPassword()."<br>");
-    echo(CurrentUser::getGender());
-  
 
 
 
