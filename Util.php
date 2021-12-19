@@ -21,12 +21,10 @@ class Util
         }
     }
 
-    public static function echoNadpis($textNazobrazenie) {
-        echo "<h1> H1 - ".$textNazobrazenie."</h1>";
+    public static function echoNadpis($textNazobrazenie, $color) {
+        echo ("<h1> style=\"color:" . $color . ";\"> H1 . $textNazobrazenie ."</h1>");
     }
-   public static function echoNadpis2($textNazobrazenie2) {
-       echo "<h2> H2 - ".$textNazobrazenie2."</h2>";
-   }
+
 
 }
 
