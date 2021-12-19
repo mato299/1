@@ -2,10 +2,14 @@
 
 class CurrentUser
 {
-    public static $name = "John";
-    public static $pass = "0000";
-    public static $gender = "male";
+    private static $name = "John";
+    private static $pass = "0000";
+    private static $gender = "male";
 
+    public static function setName($newName)
+    {
+        CurrentUser::$name = $newName;
+    }
 
     public static function getName()
     {
@@ -15,6 +19,11 @@ class CurrentUser
     public static function getPassword()
     {
         return CurrentUser::$pass;
+    }
+
+    private static function getPasswordHash()
+    {
+        
     }
 
     public static function getGender()

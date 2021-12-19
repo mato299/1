@@ -1,5 +1,6 @@
 <?php
     require_once('Util.php'); // include
+    require_once('CurrentUser.php'); // include
     
     const BEZ_ZLAVY = 0;
     const PERC_20 = 1;
@@ -15,12 +16,14 @@
     Util::echoNadpis("najlepisa str", "blue", "h3", 10);
 
 
+    echo("User:<br>");
+    echo("Name:".CurrentUser::getName()."<br>");
 
+    CurrentUser::setName("Peter");
+    echo("Name:".CurrentUser::getName()."<br>");
 
-
-
-
-
+    
+    Util::echoNewBr(2);
 
 
 
