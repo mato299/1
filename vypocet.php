@@ -26,6 +26,12 @@
     Util::echoNewBr(2);
 
 
+    echo(CurrentUser:: getName()."<br>");
+    echo(CurrentUser::getPassword()."<br>");
+    echo(CurrentUser::getGender());
+  
+
+
 
 
 // 19€ na hraca
