@@ -8,54 +8,6 @@
 
 
 
-    //  az od PHP 8.1
-    // enum Zlavy 
-    // {
-    //     case BezZlavy;
-    //     case Perc20;
-    //     case Perc10;
-    //     case Isic;
-    // }
- 
-
-
-function echoOldBr1(){}
-function echoOldBr2(){}
-function echoOldBr3(){}
-Util::echoOldBr1(); // 1x <br>
-Util::echoOldBr2(); // 2x <br>
-Util::echoOldBr3(); // 3x <br>
-
-
-function echoOldBr($how_many){} // povinna premenna
-Util::echoOldBr();  // error
-Util::echoOldBr(1); // 1x <br>
-Util::echoOldBr(2); // 2x <br>
-Util::echoOldBr(3); // 3x <br>
-
-
-function echoNewBr($how_many = 8){} // volitelna premenna
-Util::echoNewBr();  // 8x <br>
-Util::echoNewBr(1); // 1x <br>
-Util::echoNewBr(2); // 2x <br>
-Util::echoNewBr(3); // 3x <br>
-
-
-// ked budes definovat novu funkciu je jedno ktory sposob si vyberies.
-// 
-
-
-//Util::echoBr(); // <br>  zavolaj static echoBr(1);
-// Util::echoBr(2); // <br><br>
-// Util::echoBr(3); // <br><br><br>
-
-
-
- $edump = get_defined_functions();
- echo("<pre>");
- print_r($edump);
- echo("</pre>");
-
 
 
 

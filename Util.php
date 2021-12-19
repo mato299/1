@@ -21,54 +21,7 @@ class Util
         }
     }
 
-    public static function echoOldBr($how_many) // povinna premenna
-    {
-        for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
-        }
-    }    
-
-    public static function echoOldBr1() // ziadna premenna
-    {
-        $how_many = 1;
-        for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
-        }
-    }
-
-    public static function echoOldBr2()
-    {
-        $how_many = 2;
-        for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
-        }
-    }
-
-    public static function echoOldBr3() 
-    {
-        $how_many = 3;
-        for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
-        }
-    }
-
-    public static function echoOldBr6()
-    {
-        $how_many = 6;
-        for ($i=0; $i < $how_many; $i++) {
-            echo('<br>-'.$how_many.'x ');
-            echo('NOVY RIADOK');
-            echo('-<br>');
-        }
-    }
+   
 }
 
 ?>
